@@ -27,16 +27,15 @@
 			//playerElement.style.setProperty('--buffering-image', 'url(/rsc/loading.png)');
 			playerElement.style.setProperty('--progress-color', 'rgb(255, 31, 90)');
 
-			playerManager.setMediaPlaybackInfoHandler((loadRequest, playbackConfig) => {
-
-				if (loadRequest.media.customData) {
-					if (loadRequest.media.customData.licenseUrl) {
-						playbackConfig.licenseUrl = loadRequest.media.customData.licenseUrl;
-						playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
-					}
-				}
-				return playbackConfig;
-			});
+			// playerManager.setMediaPlaybackInfoHandler((loadRequest, playbackConfig) => {
+			// 	if (loadRequest.media.customData) {
+			// 		if (loadRequest.media.customData.licenseUrl) {
+			// 			playbackConfig.licenseUrl = loadRequest.media.customData.licenseUrl;
+			// 			playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
+			// 		}
+			// 	}
+			// 	return playbackConfig;
+			// });
 
 			const options = new cast.framework.CastReceiverOptions();
 			options.masInactivity = 300;
