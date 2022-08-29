@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Cast CAF Receiver</title>
+	<!-- CRF:Cast Receiver Framework -->
+	<script src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+	<!-- Cast Debuger Logger -->
+	<script src="//www.gstatic.com/cast/sdk/libs/devtools/debug_layer/caf_receiver_logger.js"></script>
+</head>
+
+<body>
+	<cast-media-player crossorigin=""></cast-media-player>
+	<footer>
+		<script language="javascript">
+
+			const context = cast.framework.CastReceiverContext.getInstance();
+			context.setLoggerLevel(cast.framework.LoggerLevel.info);
+			
+			const playerManager = context.getPlayerManager();
+	    
+      let playerElement = document.getElementsByTagName("cast-media-player")[0];
+
+			playerManager.setMediaPlaybackInfoHandler((loadRequest, playbackConfig) => {
+
+			if (loadRequest.media.customData){
+			    if(loadRequest.media.customData.licenseUrl){
+			        playbackConfig.licenseUrl = loadRequest.media.customData.licenseUrl;
+			        playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
+			    }
+			  }
+			  return playbackConfig;
+			});
+   
+			const options = new cast.framework.CastReceiverOptions();
+			options.masInactivity = 300;
+			context.start(options);
+
+		</script>
+	</footer>
+</body>
+
+</html>
