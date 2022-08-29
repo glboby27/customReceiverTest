@@ -17,22 +17,27 @@
 
 			const context = cast.framework.CastReceiverContext.getInstance();
 			context.setLoggerLevel(cast.framework.LoggerLevel.info);
-			
+
 			const playerManager = context.getPlayerManager();
-	    
-      let playerElement = document.getElementsByTagName("cast-media-player")[0];
+
+			let playerElement = document.getElementsByTagName("cast-media-player")[0];
+			playerElement.style.setProperty('--splash-image', 'url(/rsc/splash.png)');
+			playerElement.style.setProperty('--logo-image', 'url(/rsc/install_icons_icon_bi_text.png)');
+			playerElement.style.setProperty('--spinner-image', 'url(/rsc/loading.png)');
+			//playerElement.style.setProperty('--buffering-image', 'url(/rsc/loading.png)');
+			playerElement.style.setProperty('--progress-color', 'rgb(255, 31, 90)');
 
 			playerManager.setMediaPlaybackInfoHandler((loadRequest, playbackConfig) => {
 
-			if (loadRequest.media.customData){
-			    if(loadRequest.media.customData.licenseUrl){
-			        playbackConfig.licenseUrl = loadRequest.media.customData.licenseUrl;
-			        playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
-			    }
-			  }
-			  return playbackConfig;
+				if (loadRequest.media.customData) {
+					if (loadRequest.media.customData.licenseUrl) {
+						playbackConfig.licenseUrl = loadRequest.media.customData.licenseUrl;
+						playbackConfig.protectionSystem = cast.framework.ContentProtection.WIDEVINE;
+					}
+				}
+				return playbackConfig;
 			});
-   
+
 			const options = new cast.framework.CastReceiverOptions();
 			options.masInactivity = 300;
 			context.start(options);
