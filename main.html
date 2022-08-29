@@ -21,10 +21,10 @@
 			const playerManager = context.getPlayerManager();
 
 			let playerElement = document.getElementsByTagName("cast-media-player")[0];
-			playerElement.style.setProperty('--splash-image', 'url(/rsc/splash.png)');
-			playerElement.style.setProperty('--logo-image', 'url(/rsc/install_icons_icon_bi_text.png)');
-			playerElement.style.setProperty('--spinner-image', 'url(/rsc/loading.png)');
-			playerElement.style.setProperty('--buffering-image', 'url(/rsc/loading.png)');
+			playerElement.style.setProperty('--splash-image', 'url(./rsc/splash.png)');
+			playerElement.style.setProperty('--logo-image', 'url(./rsc/install_icons_icon_bi_text.png)');
+			playerElement.style.setProperty('--spinner-image', 'url(./rsc/loading.png)');
+			playerElement.style.setProperty('--buffering-image', 'url(./rsc/loading.png)');
 			playerElement.style.setProperty('--progress-color', 'rgb(255, 31, 90)');
 
 			 playerManager.setMediaPlaybackInfoHandler((loadRequest, playbackConfig) => {
